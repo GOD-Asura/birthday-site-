@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Page</title>
+    <link rel="stylesheet" href="style.css">
+     <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    #background {
+      position: absolute;
+      width: 10%;
+      height: 10%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100px;
+    }
+    #video {
+      display: none;
+    }
+  </style>
+</head>
+<body> 
+    <div class="title" style="font-size: xxx-large; text-align: center;">
+        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            HAPPY BIRTHDAYYYYYYYY
+        </p>
+
+        <div class="box">
+            <p>
+                <span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span>
+                <span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span>
+                <span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span>
+                <span>❤️</span><span>❤️</span>
+            </p>
+        </div>
+        <div>
+            <video id="video" loop="" autoplay=""controls="" src="6b01f36a5aec8b08035646232312dfc1.mp4" width="10" height="10"></video>
+                    <canvas id="canvas"></canvas>
+
+         <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    video.addEventListener('play', () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+
+      function removeGreenScreen() {
+        ctx.drawImage(video, 0, 0);
+        const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = frame.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+
+          if (g > 100 && r < 100 && b < 100) {
+            data[i + 3] = 0; // Make pixel transparent
+          }
+        }
+
+        ctx.putImageData(frame, 0, 0);
+        requestAnimationFrame(removeGreenScreen);
+      }
+
+      removeGreenScreen();
+    });
+  </script>
+        </div>
+
+        <div class="content" style="font-size: xx-large;">
+          <table align="center" border="1" style="border-collapse: collapse; font-size: x-large;">
+    <tr>
+        <th style="padding: 20px;">Here's what you should know on your birthday</th>
+    </tr>
+    <tr>
+        <th onclick="location.href='about-yourself.html'" 
+            style="
+                cursor: pointer; 
+                background-color: #ff69b4; 
+                color: white; 
+                padding: 15px; 
+                border-radius: 10px; 
+                transition: background-color 0.3s;
+            "
+            onmouseover="this.style.backgroundColor='#ff1493'"
+            onmouseout="this.style.backgroundColor='#ff69b4'">
+             About Yourself
+        </th>
+    </tr>
+    <tr>
+        <th onclick="location.href='about-me.html'" 
+            style="
+                cursor: pointer; 
+                background-color: #ff69b4; 
+                color: white; 
+                padding: 15px; 
+                border-radius: 10px; 
+                transition: background-color 0.3s;
+            "
+            onmouseover="this.style.backgroundColor='#ff1493'"
+            onmouseout="this.style.backgroundColor='#ff69b4'">
+             About ME
+        </th>
+    </tr>
+</table>
+        </div>
+    </div>
+</body>
+</html>
+ 
