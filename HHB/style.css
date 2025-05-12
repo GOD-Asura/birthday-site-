@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffe6f7;
+    overflow: hidden;
+}
+
+.title {
+    text-align: center;
+    background-color: rgb(255, 155, 243);
+    padding: 20px;
+    border-radius: 12px;
+    color: rgb(195, 95, 95);s
+}
+.box {
+   
+    display: flex;
+    color: red;
+    flex-wrap: wrap;
+}
+
+span {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: xx-large;
+    animation: spin 4s linear infinite;
+    margin: 5px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+.content{
+    font-family: cursive;
+    color: rgb(230, 91, 91);
+}
